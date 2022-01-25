@@ -27,32 +27,39 @@ export default {
             password:""
            },
             errors:[],
-            errorshow: false
+            errorshow: false,
         }
     },
     methods: {
         validationCheck() {
+            var re= /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+            var re_pw=/^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
             this.errors=[];
             if(!this.form.email){
                 this.errors.push("정보를 모두 입력하세요");
+                this.errorshow=true;
+            }
+            else if(!re.test(this.form.email)){
+                this.errors.push("이메일 형식을 확인하세요");
                 this.errorshow=true;
             }
             else if(!this.form.password){
                 this.errors.push("정보를 모두 입력하세요");
                 this.errorshow=true;
             }
+            else if(!re_pw.test(this.form.password)){
+                this.errors.push("비밀번호 형식을 확인하세요");
+                this.errorshow=true;
+            }
         },
         submitForm() {
             this.validationCheck();
+            console.log(this.errors.length);
             if(this.errors.length==""){
                 alert(this.form.email+"님 환영합니다");
                 this.$router.push("/");
             }
         },
-        // clearAll(){
-        //     this.form.email="";
-        //     this.form.password="";
-        // },
         cancel(){
             this.$router.push("/");
         }
