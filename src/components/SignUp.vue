@@ -32,7 +32,7 @@ export default {
     },
     methods: {
         validationCheck() {
-            var re= /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+            var re=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
             var re_pw=/^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
             this.errors=[];
             if(!this.form.email){
@@ -48,7 +48,7 @@ export default {
                 this.errorshow=true;
             }
             else if(!re_pw.test(this.form.password)){
-                this.errors.push("비밀번호 형식을 확인하세요");
+                this.errors.push("비밀번호를 영문, 숫자 혼합하여 6~20자리 이내로 입력하세요");
                 this.errorshow=true;
             }
         },
