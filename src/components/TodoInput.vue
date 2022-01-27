@@ -7,6 +7,7 @@
                 <i class="fas fa-plus-circle"></i>
             </span>
         </div>
+        <!-- v-bind:propsdata="todoItems" -->
         <TodoList v-bind:propsdata="todoItems" v-on:removeTodo="removeTodo"></TodoList>
         <TodoFooter></TodoFooter>
     </div>
