@@ -2,7 +2,7 @@
   <div>
     <!-- 할일 목록 -->
     <ul>
-      <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem">
+      <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem">
         <i class="far fa-square"></i>
         {{todoItem}}
         <!-- 할일 삭제 -->
@@ -16,12 +16,12 @@
 
 <script>
 export default {
-  props:["propsdata"],
-  // data() {
-  //   return {
-  //     todoItems:[]
-  //   }
-  // },
+  // props:["propsdata"],
+  data() {
+    return {
+      todoItems:this.$store.state.todoItems
+    }
+  },
   //인스턴스 생성되자마자 뷰 데이터에 접근
   // created(){
   //   if(localStorage.length>0){
@@ -35,7 +35,8 @@ export default {
   methods: {
     removeTodo(todoItem, index){
       localStorage.removeItem(todoItem); //localstorage에서 데이터를 삭제하는 removeItem()API
-      this.$emit("removeTodo", index)
+      // this.$emit("removeTodo", index);
+      this.$store.dispatch("removeTodo", index);
       // this.todoItems.splice(index, 1); //배열의 특정 index를 삭제하는 splice()API
     }
   }

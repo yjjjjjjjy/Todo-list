@@ -8,7 +8,8 @@
             </span>
         </div>
         <!-- v-bind:propsdata="todoItems" -->
-        <TodoList v-bind:propsdata="todoItems" v-on:removeTodo="removeTodo"></TodoList>
+        <!-- v-on:removeTodo="removeTodo" -->
+        <TodoList></TodoList>
         <TodoFooter></TodoFooter>
     </div>
 </template>
@@ -43,16 +44,18 @@ export default {
            if(this.newTodoItem!==""){
                 var value= this.newTodoItem && this.newTodoItem.trim(); //앞뒤 공백 제거
                 localStorage.setItem(value, value);
-                this.todoItems.push(value)
+                // this.todoItems.push(value);
+                this.$store.dispatch("addTodo", value);
                 this.clearInput();
+
             }
         },
         clearInput() {
             this.newTodoItem="";
-        },
-        removeTodo(value) {
-            this.todoItems.splice(value, 1);
         }
+        // removeTodo(value) {
+        //     this.todoItems.splice(value, 1);
+        // }
     }
 }
 </script>
