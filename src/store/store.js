@@ -15,6 +15,9 @@ const store = new Vuex.Store({
         },
         removeTodo({commit}, index){
             commit("REMOVE_TODO", index)
+        },
+        local({commit}, value){
+            commit("LOCAL", value)
         }
     },
     mutations:{
@@ -23,6 +26,9 @@ const store = new Vuex.Store({
         },
         REMOVE_TODO(state, index){
             state.todoItems.splice(index, 1)
+        },
+        LOCAL(state, value){
+            state.todoItems.push(value)
         }
     },
     //computed

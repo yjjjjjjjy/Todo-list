@@ -3,7 +3,8 @@
     <!-- 할일 목록 -->
     <ul>
       <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem">
-        <i class="far fa-square"></i>
+        <!-- <i class="far fa-square"></i> -->
+        <input type="checkbox">
         {{todoItem}}
         <!-- 할일 삭제 -->
         <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
