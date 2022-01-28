@@ -5,7 +5,7 @@
       <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem">
         <!-- <i class="far fa-square"></i> -->
         <input type="checkbox">
-        {{todoItem}}
+          {{todoItem}}
         <!-- 할일 삭제 -->
         <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
           <i class="fas fa-trash-alt"></i>

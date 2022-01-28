@@ -10,8 +10,7 @@ import dayjs from "dayjs"
 export default {
     data() {
         return {
-            date: dayjs().format("YY/MM/DD"),
-            // users:[]
+            date: dayjs().format("YY/MM/DD")
         }
     }
 }
