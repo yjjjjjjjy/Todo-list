@@ -42,7 +42,6 @@ export default {
         submitForm() {
             this.validationCheck();
             if(this.errors.length==0){
-                // alert(this.name+"님 환영합니다")
                 this.$router.push("/todoinput");
             }
         },

@@ -7,6 +7,15 @@
                 <i class="fas fa-plus-circle"></i>
             </span>
         </div>
+        <!-- modal -->
+        <modal v-if="showModal" @close="showModal=false">
+            <h3 slot="header">경고</h3>
+            <span slot="body">
+                할 일을 입력하세요
+                <!-- <i class="closeModalBtn fas fa-times" aria-hidden="true"></i> -->
+            </span>
+        </modal> 
+
         <!-- v-bind:propsdata="todoItems" -->
         <!-- v-on:removeTodo="removeTodo" -->
         <TodoList></TodoList>
@@ -15,6 +24,7 @@
 </template>
 
 <script>
+import Modal from "./common/Modal.vue"
 import TodoHeader from "./TodoHeader.vue"
 import TodoList from "./TodoList.vue"
 import TodoFooter from "./TodoFooter.vue"
@@ -22,7 +32,8 @@ export default {
     components: {
         TodoHeader,
         TodoList,
-        TodoFooter
+        TodoFooter,
+        Modal
    },
     created(){
         if(localStorage.length>0){
@@ -36,8 +47,9 @@ export default {
     },
     data() {
        return {
-           newTodoItem: "",
-        //    todoItems:[]
+            newTodoItem: "",
+            //todoItems:[]
+            showModal:false
        }
     },
     methods:{
@@ -48,7 +60,9 @@ export default {
                 // this.todoItems.push(value);
                 this.$store.dispatch("addTodo", value);
                 this.clearInput();
-
+            }
+            else{
+                this.showModal=!this.showModal
             }
         },
         clearInput() {

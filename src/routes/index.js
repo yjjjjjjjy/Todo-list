@@ -11,7 +11,7 @@ const router = new VueRouter({
      {
       path:"/",
       name:"login",
-      component:Login
+      component:Login,
     },
     {
       path:"/signup",

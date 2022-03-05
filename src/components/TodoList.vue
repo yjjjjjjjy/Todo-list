@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 할일 목록 -->
-    <ul>
+    <transition-group name="list" tag="ul">
       <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem">
         <!-- <i class="far fa-square"></i> -->
         <input type="checkbox">
@@ -11,7 +11,7 @@
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -49,6 +49,16 @@ ul{
   list-style: none;
   padding-left: 0px;
   text-align: left;  
+}
+
+.list-enter-active, .list-leave-active{
+  transition: all 0.7s;
+}
+
+/* 추가되기 직전 상태, 없어진 상태 */
+.list-enter, .list-leave-to{
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 li{
