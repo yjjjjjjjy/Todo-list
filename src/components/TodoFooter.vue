@@ -8,6 +8,7 @@
 export default {
   methods:{
     logout(){
+      localStorage.removeItem("username");
       this.$router.push("/")
     }
   }

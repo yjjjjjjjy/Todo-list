@@ -27,6 +27,12 @@ export default {
             errorshow:false
         }
     },
+    created() {
+            const savedUsername=localStorage.getItem("username");
+            if(savedUsername!==null){
+                this.$router.push("/todoinput"); 
+            }
+    },
     methods: {
         validationCheck() {
             this.errors=[];
@@ -42,6 +48,7 @@ export default {
         submitForm() {
             this.validationCheck();
             if(this.errors.length==0){
+                localStorage.setItem("username", this.name);
                 this.$router.push("/todoinput");
             }
         },
