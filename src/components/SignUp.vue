@@ -27,7 +27,7 @@ export default {
             password:""
            },
             errors:[],
-            errorshow: false,
+            errorshow: false
         }
     },
     methods: {
@@ -56,9 +56,14 @@ export default {
             this.validationCheck();
             console.log(this.errors.length);
             if(this.errors.length==""){
-                alert(this.form.email+"님 환영합니다");
-                this.$router.push("/");
+                localStorage.setItem("username", this.form.email);
+                this.$router.push("/gologin");
+                this.allClear();
             }
+        },
+        allClear(){
+            this.form.email="";
+            this.form.password="";
         },
         cancel(){
             this.$router.push("/");

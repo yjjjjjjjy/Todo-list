@@ -3,6 +3,7 @@ import VueRouter from "vue-router"
 import Login from "../components/Login.vue"
 import SignUp from "../components/SignUp.vue"
 import TodoInput from "../components/TodoInput.vue"
+import GoLogin from "../components/GoLogin.vue"
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,11 @@ const router = new VueRouter({
       path:"/todoinput",
       name:"todoinput",
       component: TodoInput
+    },
+    {
+      path:"/gologin",
+      name:"gologin",
+      component: GoLogin
     }
   ],
   mode:"history"

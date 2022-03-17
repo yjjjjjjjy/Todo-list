@@ -75,8 +75,16 @@ export default {
 }
 
 .modal-default-button {
-  cursor: pointer;
+  all: unset;
+  background: #b8babd;
+  color: #fff;
+  padding: 5px 0;
   width: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .modal-enter {

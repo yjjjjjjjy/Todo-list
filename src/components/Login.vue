@@ -4,7 +4,7 @@
             <h1>Login</h1>
             <i class="fas fa-users"></i>
             <label for="name">Username</label>
-            <input type="email" id="name" placeholder="Enter Username" v-model="name">
+            <input type="email" id="name" placeholder="Enter Username" v-model="name" ref="cursor">
             <label for="psw">Password</label>
             <input type="password" id="psw" placeholder="Enter Password" v-model="psw">
             <button type="submit">Login</button>
@@ -13,25 +13,31 @@
                 <span v-for="error in errors" :key="error">{{error}}</span>
             </div>
         </form>
+        <!-- modal -->
+        <modal v-if="showModal" @close="showModal=false">
+            <h3 slot="header">경고</h3>
+            <span slot="body">
+                존재하지 않는 아이디입니다.
+            </span>
+        </modal>
 
     </div>
 </template>
 
 <script>
+import modal from "../components/common/Modal.vue"
 export default {
+    components:{
+        modal
+    },
     data() {
         return {
             name: "",
             psw: "",
             errors:[],
-            errorshow:false
+            errorshow:false,
+            showModal:false
         }
-    },
-    created() {
-            const savedUsername=localStorage.getItem("username");
-            if(savedUsername!==null){
-                this.$router.push("/todoinput"); 
-            }
     },
     methods: {
         validationCheck() {
@@ -48,9 +54,19 @@ export default {
         submitForm() {
             this.validationCheck();
             if(this.errors.length==0){
-                localStorage.setItem("username", this.name);
-                this.$router.push("/todoinput");
+                const username=localStorage.getItem("username");
+                if(this.name!==username){
+                    this.showModal=!this.showModal
+                    this.allClear();
+                }else{
+                    this.$router.push("/todoinput");
+                }
             }
+        },
+        allClear(){
+            this.name="";
+            this.psw="";
+            this.$refs.cursor.focus();
         },
         signup(){
           this.$router.push("/signup")
